@@ -18,7 +18,7 @@ const NavBar = ({ user, handleSignout }) => {
                             <Link to='/eventschedule'>Event Schedule</Link>
                         </li>
                         <li>
-                            <Link to='/badges'>Badges</Link>
+                            <Link to='/interestcat'>Interest Category</Link>
                         </li>
                         <li>
                             <Link to='/questionare'>Questionares</Link>

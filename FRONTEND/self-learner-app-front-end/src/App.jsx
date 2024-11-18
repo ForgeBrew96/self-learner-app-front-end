@@ -3,7 +3,7 @@ import './App.css'
 import { useState } from 'react';
 import { Routes, Route } from 'react-router-dom';
 
-import Badges from "./components/Badges.jsx";
+import InterestCat from "./components/InterestCat.jsx";
 import EventSchedule from "./components/EventSchedule.jsx";
 import Profile from "./components/Profile.jsx"
 import Questionare from "./components/Questionare.jsx";
