@@ -1,35 +1,43 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
 import './App.css'
 
-function App() {
-  const [count, setCount] = useState(0)
+import { useState } from 'react';
+import { Routes, Route } from 'react-router-dom';
+
+import Badges from "./components/Badges.jsx";
+import EventSchedule from "./components/EventSchedule.jsx";
+import Profile from "./components/Profile.jsx"
+import Questionare from "./components/Questionare.jsx";
+import NavBar from "./components/NavBar"
+import Landing from './components/Landing';
+import Dashboard from './components/Dashboard';
+import SignupForm from './components/SignupForm'
+import SigninForm from './components/SigninForm'
+import * as authService from './services/authService'
+
+const App = () => {
+  const [user, setUser] = useState(authService.getUser())
+
+  const handleSignout = () => {
+    authService.signout();
+    setUser(null);
+  }
 
   return (
     <>
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
+      <NavBar user={user} handleSignout={handleSignout}/>
+      <Routes>
+        {user ? (
+          <Route path="/" element={<Dashboard user={user} />} />
+        ) : (
+          <Route path="/" element={<Landing />} />
+        )}
+
+        <Route path='/signup' element={<SignupForm setUser={setUser}/>} /> 
+        <Route path='/signin' element={<SigninForm setUser={setUser}/>} /> 
+      </Routes>
     </>
-  )
+  );
 }
 
 export default App
+
