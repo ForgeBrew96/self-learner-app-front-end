@@ -5,7 +5,7 @@ const NavBar = ({ user, handleSignout }) => {
     return (
         <div>
             <li>
-                <Link to='/'>Base Page</Link>
+                <Link to='/'>Home</Link>
             </li>
             {user ? (
                 <nav>

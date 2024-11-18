@@ -12,7 +12,7 @@ import Landing from './components/Landing';
 import Dashboard from './components/Dashboard';
 import SignupForm from './components/SignupForm'
 import SigninForm from './components/SigninForm'
-import * as authService from './services/authService'
+import * as authService from './service/authService.js'
 
 const App = () => {
   const [user, setUser] = useState(authService.getUser())
