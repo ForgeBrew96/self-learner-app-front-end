@@ -4,9 +4,6 @@ const NavBar = ({ user, handleSignout }) => {
 
     return (
         <div>
-            <li>
-                <Link to='/'>Home</Link>
-            </li>
             {user ? (
                 <nav>
                     <ul>
@@ -27,12 +24,7 @@ const NavBar = ({ user, handleSignout }) => {
                     </ul>
                 </nav>
             ) : (
-                <nav>
-                    <ul>
-                        <li><Link to="/signin">Sign In</Link></li>
-                        <li><Link to="/signup">Sign Up</Link></li>
-                    </ul>
-                </nav>
+               <h3>AppLogo/Name</h3>
             )}
         </div>
     )

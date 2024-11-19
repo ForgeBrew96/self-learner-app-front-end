@@ -11,6 +11,17 @@
   will-change: filter;
   transition: filter 300ms;
 }
+
+ul{
+ list-style: none
+}
+
+.signUp-In {
+display: flex;
+flex-direction: row;
+justify-content: space-around;
+}
+
 .logo:hover {
   filter: drop-shadow(0 0 2em #646cffaa);
 }

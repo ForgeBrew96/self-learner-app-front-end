@@ -33,7 +33,7 @@ const SigninForm = (props) => {
 
   return (
     <main>
-      <h1>Log In</h1>
+      <h1>Welcome<br/>Back</h1>
       <p>{message}</p>
       <form autoComplete="off" onSubmit={handleSubmit}>
         <div>
@@ -61,8 +61,9 @@ const SigninForm = (props) => {
         <div>
           <button>Log In</button>
           <Link to="/">
-            <button>Cancel</button>
+            <button>Back</button>
           </Link>
+          <button>Forgot Password?</button>
         </div>
       </form>
     </main>

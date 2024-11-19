@@ -39,7 +39,7 @@ const SignupForm = (props) => {
 
   return (
     <main>
-      <h1>Sign Up</h1>
+      <h1>Create<br/>Account</h1>
       <p>{message}</p>
       <form onSubmit={handleSubmit}>
         <div>
@@ -75,7 +75,7 @@ const SignupForm = (props) => {
         <div>
           <button disabled={isFormInvalid()}>Sign Up</button>
           <Link to="/">
-            <button>Cancel</button>
+            <button>Back</button>
           </Link>
         </div>
       </form>
