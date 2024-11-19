@@ -39,13 +39,16 @@ const App = () => {
       <Routes>
         {user ? (
           <Route path="/" element={<Dashboard user={user} />} />
+          
         ) : (
           <Route path="/" element={<Landing />} />
         )}
 
         <Route path='/signup' element={<SignupForm setUser={setUser}/>} /> 
         <Route path='/signin' element={<SigninForm setUser={setUser}/>} /> 
-        <Route path='/questionnaire' element={<Questionnaire getCurrentQuest={getCurrentQuest} />}/>
+
+        <Route path="/profile" element ={<Profile user={user}/>}/>
+        <Route path='/questionnaire' element={<Questionnaire />}/>
       </Routes>
     </>
   );
