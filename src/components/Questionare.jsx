@@ -1,7 +1,6 @@
-const Questionare = () => {
-  const questionnaire = props.questionnaireList.map((questionnaire) => (
-    <a key={questionnaire._id} ></a>
-  ))
+import React
+ from "react";
+const Questionnaire = () => {
 
     return (
       <div className="quiz-app">
@@ -14,10 +13,16 @@ const Questionare = () => {
             <div className="question-text">
               <span>Question?</span>
             </div>
+            <div className="answers">
+              <ul>
+                <li>Answer 1</li>
+                <li>Answer 2</li>
+              </ul>
+            </div>
           </div>
         </>
       </div>
     );
   };
   
-  export default Questionare;
+  export default Questionnaire;
