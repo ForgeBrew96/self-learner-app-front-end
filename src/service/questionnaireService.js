@@ -7,8 +7,21 @@ const index = async () => {
         const res = await axios.get(BASE_URL)
         return res.data
     } catch (err) {
-        console.log(err)
+        console.error(err)
     }
 }
 
-export { index }
+const getCurrent = async (questionaresId) => {
+    try {
+        const res = await axios.get(`${BASE_URL}/${questionaresId}`)
+        console.log(res)
+        return res.data
+    } catch (err) {
+        console.error(err)
+    }
+}
+
+export { 
+    index,
+    getCurrent
+}
