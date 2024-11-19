@@ -12,6 +12,7 @@ import Dashboard from './components/Dashboard';
 import SignupForm from './components/SignupForm'
 import SigninForm from './components/SigninForm'
 import Questionnaire from './components/Questionare.jsx';
+import QuestionnaireForm from './components/QuestionnaireForm.jsx';
 import * as authService from './service/authService.js'
 import * as questionnaireService from './service/questionnaireService.js'
 
@@ -49,6 +50,7 @@ const App = () => {
 
         <Route path="/profile" element ={<Profile user={user}/>}/>
         <Route path='/questionnaire' element={<Questionnaire />}/>
+        <Route path='/questionnaire-form' element={<QuestionnaireForm />} />
       </Routes>
     </>
   );
