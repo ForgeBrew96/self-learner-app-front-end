@@ -1,6 +1,7 @@
-import React
- from "react";
-const Questionnaire = () => {
+import React from "react";
+
+const Questionnaire = (props) => {
+  
 
     return (
       <div className="quiz-app">

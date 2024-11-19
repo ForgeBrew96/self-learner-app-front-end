@@ -17,10 +17,20 @@ import * as questionnaireService from './service/questionnaireService.js'
 
 const App = () => {
   const [user, setUser] = useState(authService.getUser())
+  const [currentQuest, setCurrentQuest] = useState('673cb25ecc8510987ffd5d7b')
 
   const handleSignout = () => {
     authService.signout();
     setUser(null);
+  }
+
+  const getCurrentQuest = () => {
+    if (!currentQuest) {
+      return null
+    }
+    const quest = questionnaireService.getCurrent(currentQuest)
+    console.log(quest)
+    return quest
   }
 
   return (
@@ -36,6 +46,7 @@ const App = () => {
 
         <Route path='/signup' element={<SignupForm setUser={setUser}/>} /> 
         <Route path='/signin' element={<SigninForm setUser={setUser}/>} /> 
+
         <Route path="/profile" element ={<Profile user={user}/>}/>
         <Route path='/questionnaire' element={<Questionnaire />}/>
       </Routes>
