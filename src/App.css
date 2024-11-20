@@ -69,6 +69,12 @@ justify-content: space-around;
   top: 0;
   left: 25px;
   font-size: 17px;
+  background-color: inherit;
+  border-color: none;
+}
+
+.sidebar .closebtn:hover{
+  opacity: 50%;
 }
 
 .openbtn {
@@ -107,13 +113,4 @@ justify-content: space-around;
 
 .read-the-docs {
   color: #888;
-}
-
-.youtube-link-button{
-  transition-duration: 0.4s
-}
-
-.youtube-link-button:hover{
-  background-color: 00416A;
-  color: white;
 }
