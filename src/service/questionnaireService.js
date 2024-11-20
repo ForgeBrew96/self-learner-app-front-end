@@ -14,7 +14,16 @@ const index = async () => {
 const getCurrent = async (questionaresId) => {
     try {
         const res = await axios.get(`${BASE_URL}/${questionaresId}`)
-        console.log(res)
+        return res.data
+    } catch (err) {
+        console.error(err)
+    }
+}
+
+const createQuestionnaire = async (formData) => {
+    try {
+        console.log(formData)
+        const res = await axios.post(BASE_URL, formData)
         return res.data
     } catch (err) {
         console.error(err)
@@ -23,5 +32,6 @@ const getCurrent = async (questionaresId) => {
 
 export { 
     index,
-    getCurrent
+    getCurrent,
+    createQuestionnaire
 }
