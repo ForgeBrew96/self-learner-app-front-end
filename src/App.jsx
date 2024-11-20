@@ -52,7 +52,7 @@ const App = () => {
         <Route path="/interestcat" element ={<InterestCat user={user}/>}/>
         <Route path="/eventschedule" element ={<EventSchedule user={user}/>}/>
         <Route path='/questionnaire' element={<Questionnaire />}/>
-        <Route path='/questionnaire-form' element={<QuestionnaireForm />} />
+        <Route path='/questionnaire-form' element={<QuestionnaireForm user={user} />} />
       </Routes>
     </>
   );
