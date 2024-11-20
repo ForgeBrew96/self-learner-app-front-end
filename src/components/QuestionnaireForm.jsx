@@ -166,13 +166,18 @@ const QuestionnaireForm = ({ user }) => {
     }
 
     return (
-       <div>
-        <h1>New Questionnaire</h1>
-        {steps[step]}
-        <button type='prev' onClick={prevStep}>Previous</button>
-        <button type='submit' onClick={handleSubmit}>Submit</button>
-        <button type='next' onClick={nextStep}>Next</button>
-       </div>
+        <>
+        <div className='questionnaire'>
+            <h1>New Questionnaire</h1>
+            {steps[step]}
+            <button type='prev' onClick={prevStep}>Previous</button>
+            <button type='submit' onClick={handleSubmit}>Submit</button>
+            <button type='next' onClick={nextStep}>Next</button>
+        </div>
+        <div>
+            <h1 className='smallScreen'>PLEASE USE DESKTOP TO BUILD A QUIZ!</h1>
+        </div>
+       </>
     )
 }
 
