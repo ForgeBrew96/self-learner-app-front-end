@@ -108,3 +108,12 @@ justify-content: space-around;
 .read-the-docs {
   color: #888;
 }
+
+.youtube-link-button{
+  transition-duration: 0.4s
+}
+
+.youtube-link-button:hover{
+  background-color: 00416A;
+  color: white;
+}
