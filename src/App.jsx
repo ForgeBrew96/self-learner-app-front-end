@@ -30,7 +30,6 @@ const App = () => {
       return null
     }
     const quest = questionnaireService.getCurrent(currentQuest)
-    console.log(quest)
     return quest
   }
 

@@ -7,7 +7,7 @@ const index = async () => {
          const InterestCatRes = await axios.get(`${BACKEND_URL}/categories`)
       return InterestCatRes.data
         } catch (error) {
-         console.log(error)
+         console.error(error)
         }
 }
 

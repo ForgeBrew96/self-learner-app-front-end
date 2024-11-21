@@ -27,9 +27,7 @@ const QuestionnaireForm = ({ user }) => {
         ],
         results: [{ name: '', description: '', img: '' }]
     })
-    console.log(formData)
     const { questionnaireId } = useParams()
-    console.log(questionnaireId)
 
     const fetchQuiz = async () => {
         try {
@@ -64,7 +62,6 @@ const QuestionnaireForm = ({ user }) => {
     }
       
     const removeQuestion = (index) => {
-        console.log(index)
         setFormData((formData) => ({
             ...formData,
             questions: [
@@ -82,8 +79,6 @@ const QuestionnaireForm = ({ user }) => {
     }
 
     const removeResult = (index) => {
-        console.log(index)
-        console.log(formData)
         setFormData((prevFormData) => ({
             ...prevFormData,
             results: [
@@ -130,7 +125,6 @@ const QuestionnaireForm = ({ user }) => {
                     alert('Questionnaire successfully updated!')
                 }
             } catch (error) {
-                console.log(formData)
                 alert('Process failed. Please try again')
             }
         }

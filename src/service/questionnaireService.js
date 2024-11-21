@@ -45,7 +45,6 @@ const createQuestionnaire = async (formData) => {
 const deleteQuestionnaire = async (questionaresId) => {
     try { 
         const deletedQuestionnaire = await axios.delete(`${BASE_URL}/${questionaresId}`)
-        console.log(deletedQuestionnaire.data)
     } catch (err) {
         console.error(err)
     }

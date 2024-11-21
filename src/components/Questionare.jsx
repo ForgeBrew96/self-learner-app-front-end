@@ -18,7 +18,7 @@ const Questionnaire = ({ user }) => {
         
         setQuestionnaireList(questionnaires);
       } catch (error) {
-        console.log(error);
+        console.error(error);
       }
     };
     fetchQuestionnaire();
