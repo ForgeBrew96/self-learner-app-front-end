@@ -45,10 +45,10 @@ const getUser = () => {
     return user;
 }
 
-const updateUser = async (userId, formData, token) => {
+const updateUser = async (userId, formData) => {
     try {
         const token = localStorage.getItem('token');
-        const res = await axios.put(`${BASE_URL}/profiles/${userId}`, formData, {
+        const res = await axios.put(`${BACKEND_URL}/profiles/${userId}`, formData, {
             headers: {
                 Authorization: `Bearer ${token}`,
                 'Content-Type': 'application/json'

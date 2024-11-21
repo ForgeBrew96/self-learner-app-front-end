@@ -1,7 +1,9 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
+import { useParams } from 'react-router-dom'
 import * as questionnaireService from '../service/questionnaireService'
 import QuestionBuilder from './QuestionBuilder'
 import ResultBuilder from './ResultBuilder'
+import UpdateQuestionnaire from './UpdateQuestionnaire'
 import axios from 'axios'
 
 const QuestionnaireForm = ({ user }) => {
@@ -14,22 +16,35 @@ const QuestionnaireForm = ({ user }) => {
         approved: true,
         createdBy: user._id,
         questions: [
-            {question: '', 
+            {
+                question: '', 
                 type: 'single-choice', 
-                options:[{ 
+                options: [{ 
                     text: '', 
-                    scores: [{
-                        possibleResult: '',
-                        value: 0
-                    }]
-                }]}
+                    scores: [{ possibleResult: '', value: 0 }]
+                }]
+            }
         ],
-        results: [{
-            name: '',
-            description: '',
-            img:''
-        }]
+        results: [{ name: '', description: '', img: '' }]
     })
+    console.log(formData)
+    const { questionnaireId } = useParams()
+    console.log(questionnaireId)
+
+    const fetchQuiz = async () => {
+        try {
+            if (questionnaireId) {
+                const response = await questionnaireService.getCurrent(questionnaireId)
+                setFormData(response)
+            }
+        } catch (err) {
+            console.error(err)
+        }
+    }
+    
+    useEffect(() => {
+        fetchQuiz()
+    }, [])
 
     const nextStep = () => setStep((prevStep) => (prevStep < 4 ? prevStep + 1 : prevStep))
     const prevStep = () => setStep((prevStep) => (prevStep > 1 ? prevStep - 1 : prevStep))
@@ -90,12 +105,33 @@ const QuestionnaireForm = ({ user }) => {
         setFormData((prevState) => ({ ...prevState, results: updatedResults }))
     }
 
-    const handleSubmit = async () => {
+    const validateForm = () => {
+        if (!formData.title.trim()) {
+            alert('Title is required!')
+            return false;
+        }
+        if (formData.questions.length === 0) {
+            alert('You must add at least one question.');
+            return false
+        }
+        return true
+    }
+    
+    const handleSubmit = async (questionnaireId, formData) => {
+        console.log(formData)
+        if (!validateForm()) return
         try {
-            await questionnaireService.createQuestionnaire(formData)
-            alert('Questionnaire created successfully!')
+            if (!questionnaireId) {
+                await questionnaireService.createQuestionnaire(formData)
+                alert('Questionnaire created successfully!')
+            }
+            else {
+                await questionnaireService.updateQuestionnaire(questionnaireId, formData)
+                alert('Questionnaire successfully updated!')
+            }
         } catch (error) {
-            alert('Failed to create questionnaire. Please try again later')
+            console.log(formData)
+            alert('Process failed. Please try again')
         }
     }
 
@@ -166,13 +202,18 @@ const QuestionnaireForm = ({ user }) => {
     }
 
     return (
-       <div>
-        <h1>New Questionnaire</h1>
-        {steps[step]}
-        <button type='prev' onClick={prevStep}>Previous</button>
-        <button type='submit' onClick={handleSubmit}>Submit</button>
-        <button type='next' onClick={nextStep}>Next</button>
-       </div>
+        <>
+        <div className='questionnaire'>
+            {questionnaireId ? <UpdateQuestionnaire /> : <h1>New Questionnaire</h1>}
+            {steps[step]}
+            <button type='prev' onClick={prevStep}>Previous</button>
+            <button type='next' onClick={nextStep}>Next</button>
+            <button type='submit' onClick={() => handleSubmit(questionnaireId, formData)}>Submit</button>
+        </div>
+        <div>
+            {/* <h1 className='smallScreen'>PLEASE USE DESKTOP TO BUILD A QUIZ!</h1> */}
+        </div>
+       </>
     )
 }
 

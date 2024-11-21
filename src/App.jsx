@@ -46,13 +46,14 @@ const App = () => {
         )}
 
         <Route path='/signup' element={<SignupForm setUser={setUser} user={user}/>} /> 
-        <Route path='/signin' element={<SigninForm setUser={setUser}/>} /> 
+        <Route path='/signin' element={<SigninForm setUser={setUser} user={user}/>} /> 
 
         <Route path="/profile" element ={<Profile user={user}/>}/>
         <Route path="/interestcat" element ={<InterestCat user={user}/>}/>
         <Route path="/eventschedule" element ={<EventSchedule user={user}/>}/>
-        <Route path='/questionnaire' element={<Questionnaire />}/>
+        <Route path='/questionnaire' element={<Questionnaire user={user} />}/>
         <Route path='/questionnaire-form' element={<QuestionnaireForm user={user} />} />
+        <Route path='/questionnaire-form/:questionnaireId' element={<QuestionnaireForm user={user} />} />
       </Routes>
     </>
   );
