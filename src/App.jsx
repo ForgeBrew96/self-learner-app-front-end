@@ -35,7 +35,6 @@ const App = () => {
       return null
     }
     const quest = questionnaireService.getCurrent(currentQuest)
-    console.log(quest)
     return quest
   }
 
@@ -56,9 +55,11 @@ const App = () => {
         <Route path="/profile" element ={<Profile user={user} userFitnessPoints={userFitnessPoints} userVideoGamesPoints={userVideoGamesPoints} userBoardGamesPoints={userBoardGamesPoints} userMusicInsPoints={userMusicInsPoints}/>}/>
         <Route path="/interestcat" element ={<InterestCat user={user}/>}/>
         <Route path="/eventschedule" element ={<EventSchedule user={user}/>}/>
-        <Route path='/questionnaire' element={<Questionnaire />}/>
-        <Route path='/questionnaire-form' element={<QuestionnaireForm user={user} />}/>
+
         <Route path='/questionnaire/:id' element={<QuestionnaireDetail user={user} userFitnessPoints={userFitnessPoints} userVideoGamesPoints={userVideoGamesPoints} userBoardGamesPoints={userBoardGamesPoints} userMusicInsPoints={userMusicInsPoints}/>}/>
+        <Route path='/questionnaire' element={<Questionnaire user={user} />}/>
+        <Route path='/questionnaire-form' element={<QuestionnaireForm user={user} />} />
+        <Route path='/questionnaire-form/:questionnaireId' element={<QuestionnaireForm user={user} />} />
       </Routes>
     </>
   );

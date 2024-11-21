@@ -20,15 +20,28 @@ const getCurrent = async (questionaresId) => {
     }
 }
 
+const updateQuestionnaire = async (questionaresId, formData) => {
+    try {
+        const res = await axios.put(`${BASE_URL}/${questionaresId}`, formData, {
+            headers: {
+                'Content-Type': 'application/json',
+            },
+        })
+        return res.data
+    } catch (err) {
+        console.eror(err)
+    }
+}
+
 const createQuestionnaire = async (formData) => {
     try {
-        console.log(formData)
         const res = await axios.post(BASE_URL, formData)
         return res.data
     } catch (err) {
         console.error(err)
     }
 }
+
 
 const submitAnswers = async (questionaresId, userId, answers) => {
     try {
@@ -39,9 +52,20 @@ const submitAnswers = async (questionaresId, userId, answers) => {
     }
   }  
 
+const deleteQuestionnaire = async (questionaresId) => {
+    try { 
+        const deletedQuestionnaire = await axios.delete(`${BASE_URL}/${questionaresId}`)
+    } catch (err) {
+        console.error(err)
+    }
+}
+
+
 export { 
     index,
     getCurrent,
-    createQuestionnaire,
     submitAnswers
+    updateQuestionnaire,
+    createQuestionnaire,
+    deleteQuestionnaire
 }

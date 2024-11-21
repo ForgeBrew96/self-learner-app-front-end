@@ -1,8 +1,16 @@
-const EventSchedule = () => {
+import Calendar from "react-calendar";
+import { useState } from "react";
+import 'react-calendar/dist/Calendar.css'
 
+const EventSchedule = () => {
+  
+  const [value, onChange] = useState(new Date());
+  
     return (
       <div>
-    <h2>Event Schedule: UNDER CONSTRUCTION!!</h2>
+    <Calendar onChange={onChange} 
+    value={value}
+    />
       </div>
     );
   };

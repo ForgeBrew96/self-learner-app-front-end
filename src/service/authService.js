@@ -12,7 +12,7 @@ const signup = async (formData) => {
 
         return res.data;
     } catch (err) {
-        console.log(err)
+        console.error(err)
         throw err;
     }
 }
@@ -32,7 +32,7 @@ const signin = async (user) => {
         }
         return res.data
     } catch (err) {
-        console.log(err);
+        console.error(err);
         throw err;
     }
 };
@@ -56,7 +56,7 @@ const updateUser = async (userId, formData) => {
         });
         return res.data
     } catch (err) {
-        console.log(err);
+        console.error(err);
     }
 }
 
