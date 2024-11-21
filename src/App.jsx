@@ -1,6 +1,6 @@
 import './App.css'
 
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Routes, Route } from 'react-router-dom';
 
 import InterestCat from "./components/InterestCat.jsx";
@@ -20,15 +20,25 @@ import * as questionnaireService from './service/questionnaireService.js'
 const App = () => {
   const [user, setUser] = useState(authService.getUser())
   const [currentQuest, setCurrentQuest] = useState('673cb25ecc8510987ffd5d7b')
-  const [userFitnessPoints, setUserFitnessPoints] = useState(user.fitnessPoints)
-  const [userVideoGamesPoints, setUserVideoGamesPoints] = useState(user.fitnessPoints)
-  const [userBoardGamesPoints, setUserBoardGamesPoints] = useState(user.fitnessPoints)
-  const [userMusicInsPoints, setUserMusicInsPoints] = useState(user.fitnessPoints)
-
+  const [userFitnessPoints, setUserFitnessPoints] = useState()
+  const [userVideoGamesPoints, setUserVideoGamesPoints] = useState()
+  const [userBoardGamesPoints, setUserBoardGamesPoints] = useState()
+  const [userMusicInsPoints, setUserMusicInsPoints] = useState()
   const handleSignout = () => {
     authService.signout();
     setUser(null);
   }
+  
+  const addPoints = () => {
+    useEffect(() => {
+      setUserFitnessPoints(user.fitnessPoints)
+      setUserBoardGamesPoints(user.boardGamePoints)
+      setUserVideoGamesPoints(user.videoGamePoints)
+      setUserMusicInsPoints(user.musicInsPoints)
+    })
+  }
+
+  
 
   const getCurrentQuest = () => {
     if (!currentQuest) {
@@ -49,8 +59,8 @@ const App = () => {
           <Route path="/" element={<Landing />} />
         )}
 
-        <Route path='/signup' element={<SignupForm setUser={setUser} user={user}/>} /> 
-        <Route path='/signin' element={<SigninForm setUser={setUser} user={user}/>} /> 
+        <Route path='/signup' element={<SignupForm setUser={setUser} user={user} addPoints={addPoints}/>} /> 
+        <Route path='/signin' element={<SigninForm setUser={setUser} user={user} addPoints={addPoints}/>} /> 
 
         <Route path="/profile" element ={<Profile user={user} userFitnessPoints={userFitnessPoints} userVideoGamesPoints={userVideoGamesPoints} userBoardGamesPoints={userBoardGamesPoints} userMusicInsPoints={userMusicInsPoints}/>}/>
         <Route path="/interestcat" element ={<InterestCat user={user}/>}/>
