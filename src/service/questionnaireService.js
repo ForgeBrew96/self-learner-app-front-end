@@ -64,7 +64,7 @@ const deleteQuestionnaire = async (questionaresId) => {
 export { 
     index,
     getCurrent,
-    submitAnswers
+    submitAnswers,
     updateQuestionnaire,
     createQuestionnaire,
     deleteQuestionnaire
