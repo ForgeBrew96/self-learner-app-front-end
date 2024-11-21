@@ -25,10 +25,6 @@ const App = () => {
   const [userVideoGamesPoints, setUserVideoGamesPoints] = useState()
   const [userBoardGamesPoints, setUserBoardGamesPoints] = useState()
   const [userMusicInsPoints, setUserMusicInsPoints] = useState()
-  const [userFitnessPoints, setUserFitnessPoints] = useState(user.fitnessPoints)
-  const [userVideoGamesPoints, setUserVideoGamesPoints] = useState(user.videoGamesPoints)
-  const [userBoardGamesPoints, setUserBoardGamesPoints] = useState(user.boardGamesPoints)
-  const [userMusicInsPoints, setUserMusicInsPoints] = useState(user.musicInsPoints)
 
   const handleSignout = () => {
     authService.signout();
