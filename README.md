@@ -7,9 +7,9 @@ Sprout is a simple app with grand ideals. The best way to learn about yourself a
 Today, Sprout holds the questionnaires and some basic info on new hobbies. But who knows? Sprouts are known for growing :) 
 
 ## Getting Started
-deploy: <br />
+deploy: https://sproutsociety.netlify.app/profile<br />
 back end: https://github.com/siseldyke/self-learner-app-backend<br />
-planning materials: 
+planning materials: https://drive.google.com/file/d/1g5EN-c2vGA0WPTA8A0yzS6JdBMEF0wKF/view
 
 ## The App Today
 <img src="https://i.imgur.com/Xv5eRnX.png" alt="the start" width="300" />
