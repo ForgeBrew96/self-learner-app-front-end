@@ -44,8 +44,12 @@ const Questionnaire = ({ user }) => {
       <h3>{quesionnaire.name}</h3>
       <h4>By {quesionnaire.description}</h4>
       <button onClick={() => handleTakeQuestionnaire(quesionnaire)}>Take Quiz!</button>
-      <Link to={`/questionnaire-form/${quesionnaire._id}`}><button>Edit Quiz</button></Link>
-      <button onClick={()=> handleDeleteQuestionnaire(quesionnaire._id)}>Delete Quiz</button>
+      {quesionnaire.createdBy === user._id && (
+        <div className='myQuestionnaires'>
+          <Link to={`/questionnaire-form/${quesionnaire._id}`}><button>Edit Quiz</button></Link>
+          <button onClick={()=> handleDeleteQuestionnaire(quesionnaire._id)}>Delete Quiz</button>
+        </div>
+      )}
     </li>
   );
 

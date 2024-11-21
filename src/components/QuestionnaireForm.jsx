@@ -118,21 +118,23 @@ const QuestionnaireForm = ({ user }) => {
     }
     
     const handleSubmit = async (questionnaireId, formData) => {
-        console.log(formData)
-        if (!validateForm()) return
-        try {
-            if (!questionnaireId) {
-                await questionnaireService.createQuestionnaire(formData)
-                alert('Questionnaire created successfully!')
+        if (user._id === formData.createdBy) {
+            if (!validateForm()) return
+            try {
+                if (!questionnaireId) {
+                    await questionnaireService.createQuestionnaire(formData)
+                    alert('Questionnaire created successfully!')
+                }
+                else {
+                    await questionnaireService.updateQuestionnaire(questionnaireId, formData)
+                    alert('Questionnaire successfully updated!')
+                }
+            } catch (error) {
+                console.log(formData)
+                alert('Process failed. Please try again')
             }
-            else {
-                await questionnaireService.updateQuestionnaire(questionnaireId, formData)
-                alert('Questionnaire successfully updated!')
-            }
-        } catch (error) {
-            console.log(formData)
-            alert('Process failed. Please try again')
         }
+        alert('You can only update your own quistionnaires, sorry!')
     }
 
     const steps = {
