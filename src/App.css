@@ -69,6 +69,12 @@ justify-content: space-around;
   top: 0;
   left: 25px;
   font-size: 17px;
+  background-color: inherit;
+  border-color: none;
+}
+
+.sidebar .closebtn:hover{
+  opacity: 50%;
 }
 
 .openbtn {

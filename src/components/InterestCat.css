@@ -1,0 +1,8 @@
+.youtubeLinkButton{
+    transition-duration: 0.4s
+  }
+  
+.youtubeLinkButton:hover{
+    background-color: #457B9D;
+    color: white;
+  }

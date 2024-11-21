@@ -30,7 +30,7 @@ const signin = async (user) => {
             const user = JSON.parse(atob(res.data.token.split('.')[1]));
             return user;
         }
-return res.data
+        return res.data
     } catch (err) {
         console.log(err);
         throw err;
@@ -45,14 +45,29 @@ const getUser = () => {
     return user;
 }
 
+const updateUser = async (userId, formData) => {
+    try {
+        const token = localStorage.getItem('token');
+        const res = await axios.put(`${BACKEND_URL}/profiles/${userId}`, formData, {
+            headers: {
+                Authorization: `Bearer ${token}`,
+                'Content-Type': 'application/json'
+            }
+        });
+        return res.data
+    } catch (err) {
+        console.log(err);
+    }
+}
 
 const signout = () => {
-localStorage.removeItem('token')
+    localStorage.removeItem('token')
 }
 
 export {
     signup,
     signin,
     getUser,
+    updateUser,
     signout
 }
