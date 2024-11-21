@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import * as authService from '../service/authService'
+import './SignupForm.css'
 
 const SignupForm = (props) => {
   const navigate = useNavigate();
@@ -39,11 +40,14 @@ const SignupForm = (props) => {
   };
 
   return (
-    <main>
+    <main className="shared-container">
+      {/* <Link to="/">
+        <button className="back-button">←</button>
+      </Link> */}
       <h1>Create<br/>Account</h1>
       <p>{message}</p>
-      <form onSubmit={handleSubmit}>
-        <div>
+      <form className="signup-form" onSubmit={handleSubmit}>
+        <div className="input-group">
           <label htmlFor="username">Username:</label>
           <input
             type="text"
@@ -53,7 +57,7 @@ const SignupForm = (props) => {
             onChange={handleChange}
           />
         </div>
-        <div>
+        <div className="input-group">
           <label htmlFor="password">Password:</label>
           <input
             type="password"
@@ -63,7 +67,7 @@ const SignupForm = (props) => {
             onChange={handleChange}
           />
         </div>
-        <div>
+        <div className="input-group">
           <label htmlFor="confirm">Confirm Password:</label>
           <input
             type="password"
@@ -74,7 +78,7 @@ const SignupForm = (props) => {
           />
         </div>
         <div>
-          <button disabled={isFormInvalid()}>Sign Up</button>
+          <button className="submit-button" disabled={isFormInvalid()}>Sign Up</button>
           <Link to="/">
             <button>Back</button>
           </Link>
