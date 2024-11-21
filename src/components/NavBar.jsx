@@ -30,7 +30,7 @@ const NavBar = ({ user, handleSignout }) => {
                             <Link to='/interestcat'>Interest Category</Link>
                         </li>
                         <li>
-                            <Link to='/questionnaire'>Questionares</Link>
+                            <Link to='/questionnaire'>Questionnaires</Link>
                         </li>
                         {user.mentorStatus && (
                             <li><Link to ='./questionnaire-form'>Questionnaire Form</Link></li>
