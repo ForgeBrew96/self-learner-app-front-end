@@ -1,6 +1,6 @@
 import axios from 'axios'
 
-const BASE_URL = `${import.meta.env.VITE_BACK_END_SERVER_URL}/questionares/`
+const BASE_URL = `${import.meta.env.VITE_BACK_END_SERVER_URL}/questionares`
 
 const index = async () => {
     try {
@@ -42,6 +42,16 @@ const createQuestionnaire = async (formData) => {
     }
 }
 
+
+const submitAnswers = async (questionaresId, userId, answers) => {
+    try {
+      const res = await axios.post(`${BASE_URL}/${questionaresId}/submit`, { userId, answers });
+      return res.data;
+    } catch (err) {
+      console.error(err);
+    }
+  }  
+
 const deleteQuestionnaire = async (questionaresId) => {
     try { 
         const deletedQuestionnaire = await axios.delete(`${BASE_URL}/${questionaresId}`)
@@ -50,9 +60,11 @@ const deleteQuestionnaire = async (questionaresId) => {
     }
 }
 
+
 export { 
     index,
     getCurrent,
+    submitAnswers
     updateQuestionnaire,
     createQuestionnaire,
     deleteQuestionnaire
