@@ -35,9 +35,17 @@ const updateQuestionnaire = async (questionaresId, formData) => {
 
 const createQuestionnaire = async (formData) => {
     try {
-        console.log(formData)
         const res = await axios.post(BASE_URL, formData)
         return res.data
+    } catch (err) {
+        console.error(err)
+    }
+}
+
+const deleteQuestionnaire = async (questionaresId) => {
+    try { 
+        const deletedQuestionnaire = await axios.delete(`${BASE_URL}/${questionaresId}`)
+        console.log(deletedQuestionnaire.data)
     } catch (err) {
         console.error(err)
     }
@@ -47,5 +55,6 @@ export {
     index,
     getCurrent,
     updateQuestionnaire,
-    createQuestionnaire
+    createQuestionnaire,
+    deleteQuestionnaire
 }

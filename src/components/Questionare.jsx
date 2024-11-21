@@ -24,8 +24,19 @@ const Questionnaire = ({ user }) => {
     fetchQuestionnaire();
   }, []);
 
-  const editQuiz = (key) => {
-    navigate(`${key}`)
+  const handleDeleteQuestionnaire = async (quesionnaire) => {
+    const confirmed = window.confirm(`Are you sure you want to delete ${quesionnaire.title}? This action cannot be undone!`)
+    if (confirmed) {
+      try {
+        await questionnaireService.deleteQuestionnaire(quesionnaire)
+        alert('Questionnaire successfully deleted!')
+        const updatedList = await questionnaireService.index()
+        setQuestionnaireList(updatedList)
+      } catch (err) {
+        console.err('Error deleting:', err)
+        alert('Deletion failed, please try again later.')
+      }
+    }
   }
 
   const quesionnaires = questionnaireList.map((quesionnaire) =>
@@ -33,7 +44,8 @@ const Questionnaire = ({ user }) => {
       <h3>{quesionnaire.name}</h3>
       <h4>By {quesionnaire.description}</h4>
       <button onClick={() => handleTakeQuestionnaire(quesionnaire)}>Take Quiz!</button>
-      <button><Link to={`/questionnaire-form/${quesionnaire._id}`}>Edit Quiz</Link></button>
+      <Link to={`/questionnaire-form/${quesionnaire._id}`}><button>Edit Quiz</button></Link>
+      <button onClick={()=> handleDeleteQuestionnaire(quesionnaire._id)}>Delete Quiz</button>
     </li>
   );
 
