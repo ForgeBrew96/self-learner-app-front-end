@@ -17,7 +17,7 @@ useEffect(() => {
 
   setInterestCat(categories)
   } catch(error) {
-    console.log(error)
+    console.error(error)
   }
  }
  FetchInterestCats()
