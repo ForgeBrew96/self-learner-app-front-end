@@ -32,6 +32,9 @@ const NavBar = ({ user, handleSignout }) => {
                         <li>
                             <Link to='/questionnaire'>Questionares</Link>
                         </li>
+                        {user.mentorStatus && (
+                            <li><Link to ='./questionnaire-form'>Questionnaire Form</Link></li>
+                        )}
                         <li><Link to="" onClick={handleSignout}>Sign Out</Link></li>
                     </ul>
                     </div>
