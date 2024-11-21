@@ -22,36 +22,41 @@ html, body {
     box-sizing: border-box;
 }
 
-.logo {
-    width: 60px;
-    height: auto;
-    object-fit: contain;
-    align-self: flex-start;
-    margin-bottom: 250px;
-    margin-left: -18px;
-}
-
-.landing-title {
+.signin-container h1 {
     font-size: 2.5rem;
     font-weight: bold;
+    margin-bottom: 250px;
+    width: 100%;
+}
+
+.signin-title {
+    position: relative;
+    top: 80px;
+    font-size: 2.5rem;
+    font-weight: bold;
+    text-align: left;
+    width: 100%;
+    margin: 0;
+}
+
+input {
+    width: 100%;
+    padding: 10px;
+    font-size: 1rem;
+    border: none;
+    border-bottom: 1px solid #ccc;
+    background-color: transparent;
     margin-bottom: 10px;
-    width: 100%;
+    box-sizing: border-box;
+    color: black;
 }
 
-p {
-    font-size: 1.1rem;
-    margin-bottom: 30px;
+input:focus {
+    outline: none;
+    border-bottom: 1px solid #272626;
 }
 
-.button-group {
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-    width: 100%;
-    align-items: center;
-}
-
-.action-button {
+button {
     background-color: #a2c6a8;
     color: #272626;
     border: none;
@@ -61,7 +66,6 @@ p {
     height: 50px;
     font-size: 1.2rem;
     font-weight: bold;
-    text-align: center;
     cursor: pointer;
     padding: 0 20px;
     display: flex;
@@ -69,28 +73,42 @@ p {
     align-items: center;
     white-space: nowrap;
     transition: transform 0.3s ease, background-color 0.3s ease;
+    margin-bottom: 20px;
 }
 
-.button-group .action-button:hover {
+button:hover {
     transform: scale(1.05);
     background-color: #b8d6bc;
 }
 
-@media (max-width: 480px) {
-    .logo {
-        width: 50px;
-        margin-bottom: 300px;
-    }
+button:active {
+    transform: scale(0.95);
+}
 
-    .action-button {
+.forgot-password {
+    display: block;
+    text-align: right;
+    font-size: 0.9rem;
+    font-weight: bold;
+    margin-top: 5px;
+    color: #272626;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.forgot-password:hover {
+    text-decoration: underline;
+}
+
+@media (max-width: 480px) {
+    button {
         width: 100%;
         padding: 0 180px;
     }
-
 }
 
 @media (min-width: 481px) {
-    .action-button {
+    button {
         width: 400px;
     }
 }
