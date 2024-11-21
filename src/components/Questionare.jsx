@@ -1,20 +1,17 @@
-import { useState, useEffect } from "react";
-import React from "react";
+import React, { useState, useEffect } from 'react'
+import { Link } from "react-router-dom"
 import * as questionnaireService from '../service/questionnaireService'
 
 const Questionnaire = ({ user }) => {
-  const [questionnaireList, setQuestionnaireList] = useState([])
-  const [selected, setSelected] = useState(null);
+  const [questionnaireList, setQuestionnaireList] = useState([]);
 
   useEffect(() => {
     const fetchQuestionnaire = async () => {
       try {
         const questionnaires = await questionnaireService.index();
-
         if (questionnaires.error) {
           throw new Error(questionnaires.error);
         }
-
         setQuestionnaireList(questionnaires);
       } catch (error) {
         console.log(error);
@@ -23,22 +20,23 @@ const Questionnaire = ({ user }) => {
     fetchQuestionnaire();
   }, []);
 
-  const quesionnaires = questionnaireList.map((quesionnaire) =>
-    <li key={quesionnaire._id}>
-      <h3>{quesionnaire.name}</h3>
-      <h4>By {quesionnaire.description}</h4>
-      <button onClick={() => handleTakeQuestionnaire(quesionnaire)}>Take Quiz!</button>
+  const questionnaires = questionnaireList.map((questionnaire) => (
+    <li key={questionnaire._id}>
+      <h3>
+        <Link to={`/questionnaire/${questionnaire._id}`}>{questionnaire.title}</Link>
+      </h3>
+      <h4>By {questionnaire.description}</h4>
     </li>
-  );
+  ));
 
-    return (
-      <div className="quiz-app">
-        <h2>Questionare</h2>
-          <div className="question-section">
-            <ul>{quesionnaires}</ul>
-            </div>
+  return (
+    <div className="quiz-app">
+      <h2>Questionnaire</h2>
+      <div className="question-section">
+        <ul>{questionnaires}</ul>
       </div>
-    );
-  };
-  
-  export default Questionnaire;
+    </div>
+  );
+};
+
+export default Questionnaire;
