@@ -1,7 +1,8 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import * as questionnaireService from '../service/questionnaireService'
 import QuestionBuilder from './QuestionBuilder'
 import ResultBuilder from './ResultBuilder'
+import UpdateQuestionnaire from './UpdateQuestionnaire'
 import axios from 'axios'
 
 const QuestionnaireForm = ({ user }) => {
@@ -30,6 +31,22 @@ const QuestionnaireForm = ({ user }) => {
             img:''
         }]
     })
+    const currentQuestionnaire = "673e248aed34edfe902f4ca6"
+
+    const fetchQuiz = async () => {
+        try {
+            if (currentQuestionnaire) {
+                const response = await questionnaireService.getCurrent(currentQuestionnaire)
+                setFormData(response)
+            }
+        } catch (err) {
+            console.error(err)
+        }
+    }
+    
+    useEffect(() => {
+        fetchQuiz()
+    }, [])
 
     const nextStep = () => setStep((prevStep) => (prevStep < 4 ? prevStep + 1 : prevStep))
     const prevStep = () => setStep((prevStep) => (prevStep > 1 ? prevStep - 1 : prevStep))
@@ -90,12 +107,20 @@ const QuestionnaireForm = ({ user }) => {
         setFormData((prevState) => ({ ...prevState, results: updatedResults }))
     }
 
-    const handleSubmit = async () => {
+    const handleSubmit = async (currentQuestionnaire) => {
+        console.log(formData)
         try {
-            await questionnaireService.createQuestionnaire(formData)
-            alert('Questionnaire created successfully!')
+            if (!currentQuestionnaire) {
+                await questionnaireService.createQuestionnaire(formData)
+                alert('Questionnaire created successfully!')
+            }
+            else {
+                await questionnaireService.updateQuestionnaire(formData, currentQuestionnaire)
+                alert('Questionnaire successfully updated!')
+            }
         } catch (error) {
-            alert('Failed to create questionnaire. Please try again later')
+            console.log(formData)
+            alert('Process failed. Please try again')
         }
     }
 
@@ -168,14 +193,14 @@ const QuestionnaireForm = ({ user }) => {
     return (
         <>
         <div className='questionnaire'>
-            <h1>New Questionnaire</h1>
+            {currentQuestionnaire ? <UpdateQuestionnaire /> : <h1>New Questionnaire</h1>}
             {steps[step]}
             <button type='prev' onClick={prevStep}>Previous</button>
-            <button type='submit' onClick={handleSubmit}>Submit</button>
             <button type='next' onClick={nextStep}>Next</button>
+            <button type='submit' onClick={handleSubmit}>Submit</button>
         </div>
         <div>
-            <h1 className='smallScreen'>PLEASE USE DESKTOP TO BUILD A QUIZ!</h1>
+            {/* <h1 className='smallScreen'>PLEASE USE DESKTOP TO BUILD A QUIZ!</h1> */}
         </div>
        </>
     )

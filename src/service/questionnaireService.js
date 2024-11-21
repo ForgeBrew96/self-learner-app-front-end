@@ -20,6 +20,21 @@ const getCurrent = async (questionaresId) => {
     }
 }
 
+const updateQuestionnaire = async (questionaresId, formData) => {
+    try {
+        console.log(formData)
+        const res = await axios.put(`${BASE_URL}/${questionaresId}`, formData, {
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.parse(formData)
+        })
+        return res.data
+    } catch (err) {
+        console.eror(err)
+    }
+}
+
 const createQuestionnaire = async (formData) => {
     try {
         console.log(formData)
@@ -33,5 +48,6 @@ const createQuestionnaire = async (formData) => {
 export { 
     index,
     getCurrent,
+    updateQuestionnaire,
     createQuestionnaire
 }
