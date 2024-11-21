@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react'
+import { useParams } from 'react-router-dom'
 import * as questionnaireService from '../service/questionnaireService'
 import QuestionBuilder from './QuestionBuilder'
 import ResultBuilder from './ResultBuilder'
@@ -15,28 +16,25 @@ const QuestionnaireForm = ({ user }) => {
         approved: true,
         createdBy: user._id,
         questions: [
-            {question: '', 
+            {
+                question: '', 
                 type: 'single-choice', 
-                options:[{ 
+                options: [{ 
                     text: '', 
-                    scores: [{
-                        possibleResult: '',
-                        value: 0
-                    }]
-                }]}
+                    scores: [{ possibleResult: '', value: 0 }]
+                }]
+            }
         ],
-        results: [{
-            name: '',
-            description: '',
-            img:''
-        }]
+        results: [{ name: '', description: '', img: '' }]
     })
-    const currentQuestionnaire = "673e248aed34edfe902f4ca6"
+    console.log(formData)
+    const { questionnaireId } = useParams()
+    console.log(questionnaireId)
 
     const fetchQuiz = async () => {
         try {
-            if (currentQuestionnaire) {
-                const response = await questionnaireService.getCurrent(currentQuestionnaire)
+            if (questionnaireId) {
+                const response = await questionnaireService.getCurrent(questionnaireId)
                 setFormData(response)
             }
         } catch (err) {
@@ -107,15 +105,28 @@ const QuestionnaireForm = ({ user }) => {
         setFormData((prevState) => ({ ...prevState, results: updatedResults }))
     }
 
-    const handleSubmit = async (currentQuestionnaire) => {
+    const validateForm = () => {
+        if (!formData.title.trim()) {
+            alert('Title is required!')
+            return false;
+        }
+        if (formData.questions.length === 0) {
+            alert('You must add at least one question.');
+            return false
+        }
+        return true
+    }
+    
+    const handleSubmit = async (questionnaireId, formData) => {
         console.log(formData)
+        if (!validateForm()) return
         try {
-            if (!currentQuestionnaire) {
+            if (!questionnaireId) {
                 await questionnaireService.createQuestionnaire(formData)
                 alert('Questionnaire created successfully!')
             }
             else {
-                await questionnaireService.updateQuestionnaire(formData, currentQuestionnaire)
+                await questionnaireService.updateQuestionnaire(questionnaireId, formData)
                 alert('Questionnaire successfully updated!')
             }
         } catch (error) {
@@ -193,11 +204,11 @@ const QuestionnaireForm = ({ user }) => {
     return (
         <>
         <div className='questionnaire'>
-            {currentQuestionnaire ? <UpdateQuestionnaire /> : <h1>New Questionnaire</h1>}
+            {questionnaireId ? <UpdateQuestionnaire /> : <h1>New Questionnaire</h1>}
             {steps[step]}
             <button type='prev' onClick={prevStep}>Previous</button>
             <button type='next' onClick={nextStep}>Next</button>
-            <button type='submit' onClick={handleSubmit}>Submit</button>
+            <button type='submit' onClick={() => handleSubmit(questionnaireId, formData)}>Submit</button>
         </div>
         <div>
             {/* <h1 className='smallScreen'>PLEASE USE DESKTOP TO BUILD A QUIZ!</h1> */}
