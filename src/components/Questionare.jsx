@@ -23,18 +23,19 @@ const Questionnaire = ({ user }) => {
     fetchQuestionnaire();
   }, []);
 
-  const questionnaires = questionnaireList.map((questionnaire) => (
-    <li key={questionnaire._id}>
-      <h3>
-        <Link to={`/questionnaire/${questionnaire._id}`}>{questionnaire.title}</Link>
-      </h3>
-      <h4>By {questionnaire.description}</h4>
+  // const questionnaires = questionnaireList.map(questionnaire) => {
+  //   <li key={questionnaire._id}>
+  //     <h3>
+  //       <Link to={`/questionnaire/${questionnaire._id}`}>{questionnaire.title}</Link>
+  //     </h3>
+  //     <h4>By {questionnaire.description}</h4>
+  //   }
 
-  const handleDeleteQuestionnaire = async (quesionnaire) => {
-    const confirmed = window.confirm(`Are you sure you want to delete ${quesionnaire.title}? This action cannot be undone!`)
+  const handleDeleteQuestionnaire = async (questionnaire) => {
+    const confirmed = window.confirm(`Are you sure you want to delete ${questionnaire.title}? This action cannot be undone!`)
     if (confirmed) {
       try {
-        await questionnaireService.deleteQuestionnaire(quesionnaire)
+        await questionnaireService.deleteQuestionnaire(questionnaire)
         alert('Questionnaire successfully deleted!')
         const updatedList = await questionnaireService.index()
         setQuestionnaireList(updatedList)
@@ -45,15 +46,15 @@ const Questionnaire = ({ user }) => {
     }
   }
 
-  const quesionnaires = questionnaireList.map((quesionnaire) =>
-    <li key={quesionnaire._id}>
-      <h3>{quesionnaire.name}</h3>
-      <h4>By {quesionnaire.description}</h4>
-      <button onClick={() => handleTakeQuestionnaire(quesionnaire)}>Take Quiz!</button>
-      {quesionnaire.createdBy === user._id && (
+  const questionnaires = questionnaireList.map((questionnaire) => (
+    <li key={questionnaire._id}>
+      <h3>{questionnaire.name}</h3>
+      <h4>By {questionnaire.description}</h4>
+      <button><Link to={`/questionnaire/${questionnaire._id}`}>{questionnaire.title}</Link></button>
+      {questionnaire.createdBy === user._id && (
         <div className='myQuestionnaires'>
-          <Link to={`/questionnaire-form/${quesionnaire._id}`}><button>Edit Quiz</button></Link>
-          <button onClick={()=> handleDeleteQuestionnaire(quesionnaire._id)}>Delete Quiz</button>
+          <Link to={`/questionnaire-form/${questionnaire._id}`}><button>Edit Quiz</button></Link>
+          <button onClick={()=> handleDeleteQuestionnaire(questionnaire._id)}>Delete Quiz</button>
         </div>
       )}
 
