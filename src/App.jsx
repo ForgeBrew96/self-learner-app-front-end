@@ -20,10 +20,16 @@ import * as questionnaireService from './service/questionnaireService.js'
 const App = () => {
   const [user, setUser] = useState(authService.getUser())
   const [currentQuest, setCurrentQuest] = useState('673cb25ecc8510987ffd5d7b')
+
   const [userFitnessPoints, setUserFitnessPoints] = useState()
   const [userVideoGamesPoints, setUserVideoGamesPoints] = useState()
   const [userBoardGamesPoints, setUserBoardGamesPoints] = useState()
   const [userMusicInsPoints, setUserMusicInsPoints] = useState()
+  const [userFitnessPoints, setUserFitnessPoints] = useState(user.fitnessPoints)
+  const [userVideoGamesPoints, setUserVideoGamesPoints] = useState(user.videoGamesPoints)
+  const [userBoardGamesPoints, setUserBoardGamesPoints] = useState(user.boardGamesPoints)
+  const [userMusicInsPoints, setUserMusicInsPoints] = useState(user.musicInsPoints)
+
   const handleSignout = () => {
     authService.signout();
     setUser(null);
@@ -53,7 +59,7 @@ const App = () => {
       <NavBar user={user} handleSignout={handleSignout}/>
       <Routes>
         {user ? (
-          <Route path="/" element={<Dashboard user={user} />} />
+          <Route path="/" element={<Dashboard user={user} userFitnessPoints={userFitnessPoints} userVideoGamesPoints={userVideoGamesPoints} userBoardGamesPoints={userBoardGamesPoints} userMusicInsPoints={userMusicInsPoints}/>} />
           
         ) : (
           <Route path="/" element={<Landing />} />
@@ -62,7 +68,7 @@ const App = () => {
         <Route path='/signup' element={<SignupForm setUser={setUser} user={user} addPoints={addPoints}/>} /> 
         <Route path='/signin' element={<SigninForm setUser={setUser} user={user} addPoints={addPoints}/>} /> 
 
-        <Route path="/profile" element ={<Profile user={user} userFitnessPoints={userFitnessPoints} userVideoGamesPoints={userVideoGamesPoints} userBoardGamesPoints={userBoardGamesPoints} userMusicInsPoints={userMusicInsPoints}/>}/>
+        <Route path="/profile" element ={<Profile user={user} />}/>
         <Route path="/interestcat" element ={<InterestCat user={user}/>}/>
         <Route path="/eventschedule" element ={<EventSchedule user={user}/>}/>
 
