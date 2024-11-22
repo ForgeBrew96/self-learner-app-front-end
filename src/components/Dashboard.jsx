@@ -71,7 +71,7 @@ const Dashboard = ({ user }) => {
               <h3>Community Activity</h3>
               <div className="community-activity">
                   <div className="activity-item">
-                      <img src="public/img/CommunityActivity.png" alt="Community Activity" />
+                      <img src="/img/CommunityActivity.png" alt="Community Activity" />
                   </div>
               </div>
           </section>
