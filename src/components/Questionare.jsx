@@ -3,6 +3,7 @@ import { useState, useEffect } from "react";
 import React from "react";
 import { Link } from "react-router-dom";
 import * as questionnaireService from '../service/questionnaireService'
+import './Questionare.css'
 
 const Questionnaire = ({ user }) => {
   const [questionnaireList, setQuestionnaireList] = useState([]);
@@ -63,7 +64,7 @@ const Questionnaire = ({ user }) => {
 
   return (
     <div className="quiz-app">
-      <h2>Questionnaire</h2>
+      <h2 className="quiz-title">Questionnaire</h2>
       <div className="question-section">
         <ul>{questionnaires}</ul>
       </div>
