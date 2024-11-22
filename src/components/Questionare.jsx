@@ -23,14 +23,6 @@ const Questionnaire = ({ user }) => {
     fetchQuestionnaire();
   }, []);
 
-  // const questionnaires = questionnaireList.map(questionnaire) => {
-  //   <li key={questionnaire._id}>
-  //     <h3>
-  //       <Link to={`/questionnaire/${questionnaire._id}`}>{questionnaire.title}</Link>
-  //     </h3>
-  //     <h4>By {questionnaire.description}</h4>
-  //   }
-
   const handleDeleteQuestionnaire = async (questionnaire) => {
     const confirmed = window.confirm(`Are you sure you want to delete ${questionnaire.title}? This action cannot be undone!`)
     if (confirmed) {
