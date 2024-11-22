@@ -34,9 +34,6 @@ const SigninForm = (props) => {
 
   return (
     <main className="signin-container shared-container">
-      {/* <Link to="/">
-        <button className="back-button">←</button>
-      </Link> */}
       <h1 className="signin-title">Welcome<br/>Back</h1>
       <p>{message}</p>
       <form autoComplete="off" onSubmit={handleSubmit}>
