@@ -5,6 +5,7 @@ import QuestionBuilder from './QuestionBuilder'
 import ResultBuilder from './ResultBuilder'
 import UpdateQuestionnaire from './UpdateQuestionnaire'
 import axios from 'axios'
+import './QuestionnaireForm.css'
 
 const QuestionnaireForm = ({ user }) => {
     const [step, setStep] = useState(1)

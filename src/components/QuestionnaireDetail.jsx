@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import * as questionnaireService from '../service/questionnaireService';
-import './Questionnaire.css'
+import './QuestionnaireDetail.css'
 
 const QuestionnaireDetail = ({ user }) => {
   const { id } = useParams();
