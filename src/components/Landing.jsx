@@ -5,7 +5,7 @@ const Landing = () => {
   return (
     <main className="landing-container shared-container">
       <img className="logo" src="/img/Sprout (1).png" alt="App Logo" />
-      <h1 className="landing-title">Sprout</h1>
+      <img className="landing-title" src="/img/SproutNameLogo.png" alt="Word Logo" />
       {/* <ul className="mission-statement">
         <li><em>Analyze</em> your life goals and interests</li>
         <li>Be <em>Gifted</em> New Paths and Ideas</li>

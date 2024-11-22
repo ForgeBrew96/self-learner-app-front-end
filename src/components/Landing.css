@@ -31,11 +31,16 @@ html, body {
     margin-left: -18px;
 }
 
+.landing-container {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
 .landing-title {
-    font-size: 2.5rem;
-    font-weight: bold;
-    margin-bottom: 10px;
-    width: 100%;
+    margin-bottom: 5px;
+    width: 40%;
+    margin-left: -240px;
 }
 
 p {

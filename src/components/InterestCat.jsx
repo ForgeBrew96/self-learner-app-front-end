@@ -101,7 +101,7 @@ const categories = interestCatList.map((category) => (
 return (
   <div className="IntCategory-container shared-container">
     <header className="IntCategory-header">
-    <h2>Current Categories</h2>
+    <h2 className="catdashboard-title">Current Categories</h2>
       <p className="catdashboard-description">
         Looking for inspiration? New categories are sprouting up all the
         time! Check back often to see what's new. Excited to watch you grow!

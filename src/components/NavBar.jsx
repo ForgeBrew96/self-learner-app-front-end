@@ -42,7 +42,7 @@ const NavBar = ({ user, handleSignout }) => {
                 </nav>
 
             ) : (
-               <h3>AppLogo/Name</h3>
+               <></>
             )}
         </div>
     )
