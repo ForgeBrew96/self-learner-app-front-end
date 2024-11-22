@@ -127,8 +127,9 @@ const QuestionnaireForm = ({ user }) => {
             } catch (error) {
                 alert('Process failed. Please try again')
             }
+        } else {
+            alert('You can only update your own quistionnaires, sorry!')
         }
-        alert('You can only update your own quistionnaires, sorry!')
     }
 
     const steps = {
